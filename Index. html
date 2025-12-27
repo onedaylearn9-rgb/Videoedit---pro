@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoEdit Pro - Professional Video Editing Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Top Ad */
+        .top-ad {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            padding: 12px 0;
+            text-align: center;
+            border-bottom: 2px solid #60a5fa;
+            margin-bottom: 20px;
+        }
+        
+        .ad-content {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ad-tag {
+            background-color: #f59e0b;
+            color: #1f2937;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .ad-button {
+            background-color: #fbbf24;
+            color: #1f2937;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: all 0.3s;
+        }
+        
+        .ad-button:hover {
+            background-color: #f59e0b;
+            transform: scale(1.05);
+        }
+        
+        /* Header */
+        header {
+            padding: 25px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tagline {
+            color: #94a3b8;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #f1f5f9;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-box {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #475569;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #3b82f6;
+        }
+        
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #60a5fa;
+            transition: all 0.3s;
+        }
+        
+        .feature-box:hover .feature-icon {
+            transform: scale(1.1);
+            color: #8b5cf6;
+        }
+        
+        .feature-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #f8fafc;
+        }
+        
+        .feature-box p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-size: 15px;
+            flex-grow: 1;
+        }
+        
+        .use-button {
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 80%;
+            margin-top: auto;
+        }
+        
+        .use-button:hover {
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Feature Output Area */
+        .feature-output {
+            background-color: #1e293b;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+            border: 2px solid #475569;
+            min-height: 200px;
+            display: none;
+            transition: all 0.5s;
+        }
+        
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #475569;
+        }
+        
+        .output-header h3 {
+            color: #60a5fa;
+            font-size: 22px;
+        }
+        
+        .close-output {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-output:hover {
+            color: #ef4444;
+        }
+        
+        .output-content {
+            padding: 20px 0;
+        }
+        
+        .output-active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Tool Interface */
+        .tool-interface {
+            background-color: #0f172a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #334155;
+        }
+        
+        .tool-header {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+        }
+        
+        .slider-container {
+            margin: 15px 0;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #334155;
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+        }
+        
+        .effect-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .effect-button {
+            background-color: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .effect-button:hover {
+            background-color: #475569;
+        }
+        
+        .effect-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .preview-area {
+            background-color: #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            border: 2px dashed #475569;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .preview-icon {
+            font-size: 48px;
+            color: #60a5fa;
+            margin-bottom: 15px;
+        }
+        
+        /* Bottom Ad */
+        .bottom-ad {
+            background: linear-gradient(90deg, #1e293b, #334155);
+            padding: 25px 0;
+            margin: 60px 0 40px 0;
+            border-radius: 15px;
+            border: 1px solid #475569;
+        }
+        
+        .bottom-ad-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .ad-text h3 {
+            color: #f8fafc;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        
+        .ad-text p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        
+        .ad-cta-button {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .ad-cta-button:hover {
+            background: linear-gradient(90deg, #059669, #10b981);
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            padding: 30px 0;
+            border-top: 1px solid #334155;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .copyright {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #60a5fa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .bottom-ad-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links a {
+                margin: 0 10px;
+            }
+        }
+        
+        /* Spacing */
+        .spacing {
+            margin: 30px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Ad -->
+    <div class="top-ad">
+        <div class="container">
+            <div class="ad-content">
+                <span class="ad-tag">LIMITED OFFER</span>
+                Get VideoEdit Pro Premium - 50% OFF for first 100 users
+                <button class="ad-button">CLAIM NOW</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-video"></i> VideoEdit Pro
+            </div>
+            <div class="tagline">Professional video editing tools for creators</div>
+        </header>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Professional Editing Features</h2>
+            <p style="text-align: center; color: #94a3b8; max-width: 800px; margin: 0 auto 40px;">Click on any feature to start using it. Each tool opens an interactive interface where you can apply effects and adjustments.</p>
+            
+            <div class="features-container">
+                <!-- Feature 1: Cutting Tool -->
+                <div class="feature-box" id="feature1">
+                    <div class="feature-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Smart Cutting Tool</h3>
+                    <p>Precisely cut and trim your videos with frame-accurate controls. Split, delete, or rearrange clips with ease using our intuitive timeline editor.</p>
+                    <button class="use-button" data-feature="cutting">
+                        <i class="fas fa-play-circle"></i> Use Cutting Tool
+                    </button>
+                </div>
+                
+                <!-- Feature 2: Color Grading -->
+                <div class="feature-box" id="feature2">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Advanced Color Grading</h3>
+                    <p>Enhance your footage with professional color correction tools. Adjust brightness, contrast, saturation, and apply cinematic color presets.</p>
+                    <button class="use-button" data-feature="color">
+                        <i class="fas fa-play-circle"></i> Use Color Grading
+                    </button>
+                </div>
+                
+                <!-- Feature 3: Effects & Transitions -->
+                <div class="feature-box" id="feature3">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Effects & Transitions</h3>
+                    <p>Add visual effects, text animations, and smooth transitions between clips. Choose from 100+ presets to make your videos stand out.</p>
+                    <button class="use-button" data-feature="effects">
+                        <i class="fas fa-play-circle"></i> Use Effects
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Feature Output Area -->
+            <div class="feature-output" id="featureOutput">
+                <div class="output-header">
+                    <h3 id="outputTitle">Feature Tool</h3>
+                    <button class="close-output" id="closeOutput">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="output-content" id="outputContent">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Spacing -->
+        <div class="spacing"></div>
+        
+        <!-- Bottom Ad -->
+        <section class="bottom-ad">
+            <div class="container">
+                <div class="bottom-ad-content">
+                    <div class="ad-text">
+                        <h3>Ready to take your videos to the next level?</h3>
+                        <p>Upgrade to VideoEdit Pro Premium and unlock all advanced features, 4K exports, and priority support.</p>
+                    </div>
+                    <button class="ad-cta-button" id="upgradeButton">
+                        <i class="fas fa-crown"></i> UPGRADE TO PREMIUM
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-video"></i> VideoEdit Pro
+                </div>
+                <div class="copyright">
+                    &copy; 2023 VideoEdit Pro. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Feature data and tool interfaces
+        const featureData = {
+            cutting: {
+                title: "Smart Cutting Tool",
+                content: `
+                    <div class="tool-interface">
+                        <h4 class="tool-header">Trim Your Video</h4>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Start Time:</span>
+                                <span id="startTime">0:00</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="0" class="slider" id="startSlider">
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>End Time:</span>
+                                <span id="endTime">1:30</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="100" class="slider" id="endSlider">
+                        </div>
+                        <div class="preview-area">
+                            <div class="preview-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <p>Video preview: 0:00 - 1:30</p>
+                            <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">Drag sliders to adjust cut points</p>
+                        </div>
+                        <button class="use-button" style="margin-top: 20px; width: 100%;" id="applyCut">
+                            <i class="fas fa-check"></i> Apply Cut
+                        </button>
+                    </div>
+                `
+            },
+            color: {
+                title: "Advanced Color Grading",
+                content: `
+                    <div class="tool-interface">
+                        <h4 class="tool-header">Adjust Color Settings</h4>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Brightness:</span>
+                                <span id="brightnessValue">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="slider" id="brightnessSlider">
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Contrast:</span>
+                                <span id="contrastValue">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="slider" id="contrastSlider">
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Saturation:</span>
+                                <span id="saturationValue">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="slider" id="saturationSlider">
+                        </div>
+                        <div class="effect-buttons">
+                            <button class="effect-button active" data-preset="cinematic">Cinematic</button>
+                            <button class="effect-button" data-preset="vivid">Vivid</button>
+                            <button class="effect-button" data-preset="bw">Black & White</button>
+                            <button class="effect-button" data-preset="warm">Warm</button>
+                            <button class="effect-button" data-preset="cool">Cool</button>
+                        </div>
+                        <div class="preview-area">
+                            <div class="preview-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <p>Color adjustments preview</p>
+                            <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">Adjust sliders or click presets</p>
+                        </div>
+                        <button class="use-button" style="margin-top: 20px; width: 100%;" id="applyColor">
+                            <i class="fas fa-check"></i> Apply Color Grade
+                        </button>
+                    </div>
+                `
+            },
+            effects: {
+                title: "Effects & Transitions",
+                content: `
+                    <div class="tool-interface">
+                        <h4 class="tool-header">Select Effects</h4>
+                        <div class="effect-buttons">
+                            <button class="effect-button active" data-effect="fade">Fade</button>
+                            <button class="effect-button" data-effect="slide">Slide</button>
+                            <button class="effect-button" data-effect="zoom">Zoom</button>
+                            <button class="effect-button" data-effect="blur">Blur</button>
+                            <button class="effect-button" data-effect="glitch">Glitch</button>
+                            <button class="effect-button" data-effect="bounce">Bounce</button>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Effect Duration:</span>
+                                <span id="effectDuration">0.5s</span>
+                            </div>
+                            <input type="range" min="1" max="30" value="5" class="slider" id="durationSlider">
+                        </div>
+                        <div class="preview-area">
+                            <div class="preview-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <p>Effect preview: <span id="currentEffect">Fade</span></p>
+                            <button class="effect-button" style="margin-top: 15px;" id="previewEffect">
+                                <i class="fas fa-play"></i> Preview Effect
+                            </button>
+                        </div>
+                        <button class="use-button" style="margin-top: 20px; width: 100%;" id="applyEffect">
+                            <i class="fas fa-check"></i> Apply Effect
+                        </button>
+                    </div>
+                `
+            }
+        };
+        
+        // DOM Elements
+        const featureBoxes = document.querySelectorAll('.feature-box');
+        const useButtons = document.querySelectorAll('.use-button');
+        const featureOutput = document.getElementById('featureOutput');
+        const outputTitle = document.getElementById('outputTitle');
+        const outputContent = document.getElementById('outputContent');
+        const closeOutput = document.getElementById('closeOutput');
+        const upgradeButton = document.getElementById('upgradeButton');
+        
+        // Initialize sliders and effect buttons
+        function initializeToolInteractions() {
+            // Start time slider for cutting tool
+            const startSlider = document.getElementById('startSlider');
+            const startTime = document.getElementById('startTime');
+            if (startSlider) {
+                startSlider.addEventListener('input', function() {
+                    const minutes = Math.floor(this.value / 60);
+                    const seconds = this.value % 60;
+                    startTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Update preview text
+                    const endSlider = document.getElementById('endSlider');
+                    const endMinutes = Math.floor(endSlider.value / 60);
+                    const endSeconds = endSlider.value % 60;
+                    const previewArea = document.querySelector('.preview-area p');
+                    if (previewArea) {
+                        previewArea.textContent = `Video preview: ${minutes}:${seconds.toString().padStart(2, '0')} - ${endMinutes}:${endSeconds.toString().padStart(2, '0')}`;
+                    }
+                });
+            }
+            
+            // End time slider for cutting tool
+            const endSlider = document.getElementById('endSlider');
+            const endTime = document.getElementById('endTime');
+            if (endSlider) {
+                endSlider.addEventListener('input', function() {
+                    const minutes = Math.floor(this.value / 60);
+                    const seconds = this.value % 60;
+                    endTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Update preview text
+                    const startSlider = document.getElementById('startSlider');
+                    const startMinutes = Math.floor(startSlider.value / 60);
+                    const startSeconds = startSlider.value % 60;
+                    const previewArea = document.querySelector('.preview-area p');
+                    if (previewArea) {
+                        previewArea.textContent = `Video preview: ${startMinutes}:${startSeconds.toString().padStart(2, '0')} - ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    }
+                });
+            }
+            
+            // Color grading sliders
+            const brightnessSlider = document.getElementById('brightnessSlider');
+            const brightnessValue = document.getElementById('brightnessValue');
+            if (brightnessSlider) {
+                brightnessSlider.addEventListener('input', function() {
+                    brightnessValue.textContent = `${this.value}%`;
+                });
+            }
+            
+            const contrastSlider = document.getElementById('contrastSlider');
+            const contrastValue = document.getElementById('contrastValue');
+            if (contrastSlider) {
+                contrastSlider.addEventListener('input', function() {
+                    contrastValue.textContent = `${this.value}%`;
+                });
+            }
+            
+            const saturationSlider = document.getElementById('saturationSlider');
+            const saturationValue = document.getElementById('saturationValue');
+            if (saturationSlider) {
+                saturationSlider.addEventListener('input', function() {
+                    saturationValue.textContent = `${this.value}%`;
+                });
+            }
+            
+            // Effect duration slider
+            const durationSlider = document.getElementById('durationSlider');
+            const effectDuration = document.getElementById('effectDuration');
+            if (durationSlider) {
+                durationSlider.addEventListener('input', function() {
+                    effectDuration.textContent = `${(this.value / 10).toFixed(1)}s`;
+                });
+            }
+            
+            // Color preset buttons
+            const colorPresetButtons = document.querySelectorAll('[data-preset]');
+            colorPresetButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    colorPresetButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Set slider values based on preset
+                    const preset = this.getAttribute('data-preset');
+                    if (preset === 'cinematic') {
+                        if (brightnessSlider) brightnessSlider.value = 45;
+                        if (contrastSlider) contrastSlider.value = 60;
+                        if (saturationSlider) saturationSlider.value = 40;
+                    } else if (preset === 'vivid') {
+                        if (brightnessSlider) brightnessSlider.value = 55;
+                        if (contrastSlider) contrastSlider.value = 50;
+                        if (saturationSlider) saturationSlider.value = 80;
+                    } else if (preset === 'bw') {
+                        if (brightnessSlider) brightnessSlider.value = 50;
+                        if (contrastSlider) contrastSlider.value = 60;
+                        if (saturationSlider) saturationSlider.value = 0;
+                    } else if (preset === 'warm') {
+                        if (brightnessSlider) brightnessSlider.value = 55;
+                        if (contrastSlider) contrastSlider.value = 50;
+                        if (saturationSlider) saturationSlider.value = 60;
+                    } else if (preset === 'cool') {
+                        if (brightnessSlider) brightnessSlider.value = 50;
+                        if (contrastSlider) contrastSlider.value = 55;
+                        if (saturationSlider) saturationSlider.value = 50;
+                    }
+                    
+                    // Update display values
+                    if (brightnessSlider && brightnessValue) brightnessValue.textContent = `${brightnessSlider.value}%`;
+                    if (contrastSlider && contrastValue) contrastValue.textContent = `${contrastSlider.value}%`;
+                    if (saturationSlider && saturationValue) saturationValue.textContent = `${saturationSlider.value}%`;
+                });
+            });
+            
+            // Effect buttons
+            const effectButtons = document.querySelectorAll('[data-effect]');
+            effectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    effectButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Update current effect display
+                    const currentEffect = document.getElementById('currentEffect');
+                    if (currentEffect) {
+                        currentEffect.textContent = this.getAttribute('data-effect').charAt(0).toUpperCase() + this.getAttribute('data-effect').slice(1);
+                    }
+                });
+            });
+            
+            // Apply buttons
+            const applyCut = document.getElementById('applyCut');
+            if (applyCut) {
+                applyCut.addEventListener('click', function() {
+                    alert('Cut applied successfully! Your video has been trimmed.');
+                });
+            }
+            
+            const applyColor = document.getElementById('applyColor');
+            if (applyColor) {
+                applyColor.addEventListener('click', function() {
+                    alert('Color grade applied successfully!');
+                });
+            }
+            
+            const applyEffect = document.getElementById('applyEffect');
+            if (applyEffect) {
+                applyEffect.addEventListener('click', function() {
+                    alert('Effect applied successfully!');
+                });
+            }
+            
+            const previewEffect = document.getElementById('previewEffect');
+            if (previewEffect) {
+                previewEffect.addEventListener('click', function() {
+                    alert('Previewing the selected effect...');
+                });
+            }
+        }
+        
+        // Function to open feature tool
+        function openFeatureTool(featureKey) {
+            if (featureData[featureKey]) {
+                outputTitle.textContent = featureData[featureKey].title;
+                outputContent.innerHTML = featureData[featureKey].content;
+                featureOutput.classList.add('output-active');
+                
+                // Scroll to output area
+                featureOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Initialize tool interactions
+                setTimeout(initializeToolInteractions, 100);
+            }
+        }
+        
+        // Event Listeners for feature boxes and buttons
+        featureBoxes.forEach(box => {
+            box.addEventListener('click', function(e) {
+                // Don't trigger if clicked on the use button (handled separately)
+                if (!e.target.closest('.use-button')) {
+                    const featureId = this.id;
+                    let featureKey = '';
+                    
+                    if (featureId === 'feature1') featureKey = 'cutting';
+                    else if (featureId === 'feature2') featureKey = 'color';
+                    else if (featureId === 'feature3') featureKey = 'effects';
+                    
+                    openFeatureTool(featureKey);
+                }
+            });
+        });
+        
+        useButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const featureKey = this.getAttribute('data-feature');
+                openFeatureTool(featureKey);
+            });
+        });
+        
+        // Close output area
+        closeOutput.addEventListener('click', function() {
+            featureOutput.classList.remove('output-active');
+        });
+        
+        // Upgrade button alert
+        upgradeButton.addEventListener('click', function() {
+            alert('Redirecting to premium upgrade page...');
+        });
+        
+        // Top ad button
+        document.querySelector('.ad-button').addEventListener('click', function() {
+            alert('Claiming your 50% discount... Redirecting to checkout.');
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('VideoEdit Pro website loaded successfully!');
+        });
+    </script>
+</body>
+</html>
